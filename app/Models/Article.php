@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    // Abilitiamo il salvataggio dei tre campi nel database MySQL
-    protected $fillable = ['title', 'subtitle', 'body'];
+    // Abilitiamo il salvataggio dei campi, incluso il nuovo user_id
+    protected $fillable = ['title', 'subtitle', 'body', 'user_id'];
+
+    // Relazione One-to-Many: L'articolo appartiene a un utente specifico
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
